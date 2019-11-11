@@ -18,6 +18,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@mail.com',
         ]);
 
-        factory(App\Tour::class, 18)->create();
+        // factory(App\Tour::class, 18)->create();
     }
 }

@@ -27,6 +27,7 @@ class Tour extends Model
         'longitude',
         'contact',
         'work_hour',
+        'barcode_ar',
     ];
 
     /**
@@ -34,7 +35,7 @@ class Tour extends Model
      *
      * @var array
      */
-    protected $appends = ['coordinate', 'image_url'];
+    protected $appends = ['coordinate', 'image_url', 'barcode_ar_url'];
 
     /**
      * Get outlet coordinate attribute.
@@ -56,6 +57,16 @@ class Tour extends Model
     public function getImageUrlAttribute()
     {
         return $this->getImage($this->image);
+    }
+
+    /**
+     * Get the image url.
+     *
+     * @return string
+     */
+    public function getBarcodeArUrlAttribute()
+    {
+        return $this->getImage($this->barcode_ar);
     }
 
     /**

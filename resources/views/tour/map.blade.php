@@ -47,7 +47,7 @@
 
             map.addListener('click', function () {
                 infoWindow.close();
-            })
+            });
         }
 
         window.onload = function () {

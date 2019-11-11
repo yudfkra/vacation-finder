@@ -22,7 +22,7 @@
                 </div>
             @endauth
         </div>
-        @foreach ($tours as $tour)
+        @forelse ($tours as $tour)
             @if ($loop->iteration % 3 == 1)
                 <div class="row">
             @endif
@@ -54,7 +54,16 @@
             @if ($loop->iteration % 3 == 0 || $loop->last)
                 </div>
             @endif
-        @endforeach
+        @empty
+            <div class="row mt-5 justify-content-center">
+                <div class="col-md-4">
+                    <div class="clearfix">
+                        <h4 class="pt-3">Oops! Tidak ada data wisata!</h4>
+                        <p class="text-muted">Data wisata tidak ditemukan.</p>
+                    </div>
+                </div>
+            </div>
+        @endforelse
         <div class="mt-2 d-flex justify-content-center">
             {!! $tours->links() !!}
         </div>

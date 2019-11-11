@@ -87,6 +87,20 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label for="input-barcode_ar" class="col-md-2 col-form-label text-md-right">Barcode AR</label>
+                                <div class="col-md-10">
+                                    <label for="input-barcode_ar" style="cursor: pointer;">
+                                        <img id="input-barcode_ar-display" class="img-fluid mr-1" src="{{ $tour->barcode_ar_url ?? asset('img/default-banner.jpg') }}" style="width: 180px; height: 180px; object-fit: cover;">
+                                        <input type="file" name="barcode_ar" id="input-barcode_ar" class="d-none image-preview" accept="image/*" data-target="input-barcode_ar-display">
+                                    </label>
+                                    @error('barcode_ar')
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
                         <div class="card-footer clearfix">
                             <a href="{{ route('tour.index') }}" class="btn btn-secondary">Batal</a>

@@ -24,6 +24,7 @@ class CreateToursTable extends Migration
             $table->decimal('longitude', 11, 8);
             $table->string('contact', 50);
             $table->string('work_hour')->nullable();
+            $table->string('barcode_ar', 150)->nullable();
             $table->timestamps();
 
             $table->foreign('creator_id')->references('id')->on('users')

@@ -103,8 +103,10 @@ class TourController extends Controller
     public function destroy(Tour $tour)
     {
         if ($tour->delete()) {
-            if ($tour->image) {
-                Storage::disk('public')->delete(Tour::IMAGE_PATH . '/' . $tour->image);
+            foreach (['image', 'barcode_ar'] as $image_key) {
+                if ($image = $tour->{$image_key}) {
+                    Storage::disk('public')->delete(Tour::IMAGE_PATH . '/' . $image);
+                }
             }
 
             return redirect()->route('tour.index');
@@ -126,15 +128,17 @@ class TourController extends Controller
 
         $fields['creator_id'] = $request->user()->id;
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $image->store(Tour::IMAGE_PATH, 'public');
+        foreach (['image', 'barcode_ar'] as $image_key) {
+            if ($request->hasFile($image_key)) {
+                $image = $request->file($image_key);
+                $image->store(Tour::IMAGE_PATH, 'public');
 
-            if ($tour && $tour->image) {
-                Storage::disk('public')->delete(Tour::IMAGE_PATH . '/' . $tour->image);
+                if ($tour && $old_image = $tour->{$image_key}) {
+                    Storage::disk('public')->delete(Tour::IMAGE_PATH . '/' . $old_image);
+                }
+
+                $fields[$image_key] = $image->hashName();
             }
-
-            $fields['image'] = $image->hashName();
         }
 
         return $fields;

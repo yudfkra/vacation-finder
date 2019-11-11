@@ -27,13 +27,12 @@ class TourRequest extends FormRequest
             'name' => 'required|string',
             'description' => 'required|string',
             'address' => 'required|string',
-            'image' => 'required|image|mimes:png,jpg,jpeg',
+            'image' => 'nullable|image|mimes:png,jpg,jpeg',
             'latitude' => 'nullable|required_with:longitude|max:20',
             'longitude' => 'nullable|required_with:latitude|max:20',
             'contact' => 'required|string',
-            'image_collections' => 'nullable|array',
-            'image_collections.*' => 'image|mimes:png,jpg,jpeg',
             'work_hour' => 'nullable|string',
+            'barcode_ar' => 'nullable|image|mimes:png,jpg,jpeg',
         ];
     }
 
@@ -52,8 +51,8 @@ class TourRequest extends FormRequest
             'latitude' => 'Latitude',
             'longitude' => 'Longitude',
             'contact' => 'Kontak',
-            'image_collections.*' => 'Koleksi Gambar',
             'work_hour' => 'Jam Kerja',
+            'barcode_ar' => 'Barcode AR',
         ];
     }
 }
